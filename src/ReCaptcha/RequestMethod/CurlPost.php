@@ -57,6 +57,9 @@ class CurlPost implements RequestMethod
      */
     private $siteVerifyUrl;
 
+    private $use_proxy = false;
+    private $proxy_url = '';
+
     /**
      * Only needed if you want to override the defaults
      *
@@ -67,6 +70,20 @@ class CurlPost implements RequestMethod
     {
         $this->curl = (is_null($curl)) ? new Curl() : $curl;
         $this->siteVerifyUrl = (is_null($siteVerifyUrl)) ? ReCaptcha::SITE_VERIFY_URL : $siteVerifyUrl;
+    }
+
+    /**
+     * Set proxy
+     *
+     * @param $url
+     * @return $this
+     */
+    public function setProxy($url)
+    {
+        $this->use_proxy = true;
+        $this->proxy_url = $url;
+
+        return $this;
     }
 
     /**
@@ -89,8 +106,8 @@ class CurlPost implements RequestMethod
             CURLOPT_HEADER => false,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_HTTPPROXYTUNNEL => RECAPTCHA_USE_PROXY ?? false,
-            CURLOPT_PROXY => RECAPTCHA_HTTP_PROXY,
+            CURLOPT_HTTPPROXYTUNNEL => $this->use_proxy,
+            CURLOPT_PROXY => $this->proxy_url,
         );
         $this->curl->setoptArray($handle, $options);
 
