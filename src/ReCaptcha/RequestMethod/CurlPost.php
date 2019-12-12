@@ -88,7 +88,9 @@ class CurlPost implements RequestMethod
             CURLINFO_HEADER_OUT => false,
             CURLOPT_HEADER => false,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYPEER => true
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_HTTPPROXYTUNNEL => RECAPTCHA_USE_PROXY ?? false,
+            CURLOPT_PROXY => RECAPTCHA_HTTP_PROXY,
         );
         $this->curl->setoptArray($handle, $options);
 
