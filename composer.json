@@ -7,7 +7,7 @@
     "license": "BSD-3-Clause",
     "support": {
         "forum": "https://groups.google.com/forum/#!forum/recaptcha",
-        "source": "https://github.com/google/recaptcha"
+        "source": "https://github.com/zeatool/recaptcha"
     },
     "require": {
         "php": ">=5.5"
