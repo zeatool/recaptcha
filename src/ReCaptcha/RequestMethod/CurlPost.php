@@ -108,6 +108,8 @@ class CurlPost implements RequestMethod
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_HTTPPROXYTUNNEL => $this->use_proxy,
             CURLOPT_PROXY => $this->proxy_url,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
         );
         $this->curl->setoptArray($handle, $options);
 
